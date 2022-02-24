@@ -40,6 +40,16 @@ class MainActivity : AppCompatActivity() {
         initSounds()
     }
 
+    override fun onResume() {
+        super.onResume()
+        soundPool.autoResume()
+    }
+    override fun onPause() {
+        super.onPause()
+        soundPool.autoPause()
+
+    }
+
     private fun bindViews(){
         seekBar.setOnSeekBarChangeListener(
             object : SeekBar.OnSeekBarChangeListener{
