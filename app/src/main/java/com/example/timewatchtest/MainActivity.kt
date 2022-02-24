@@ -2,6 +2,7 @@ package com.example.timewatchtest
 
 import android.annotation.SuppressLint
 import android.content.IntentSender
+import android.media.SoundPool
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.CountDownTimer
@@ -22,7 +23,13 @@ class MainActivity : AppCompatActivity() {
         findViewById(R.id.seekBar)
     }
 
+    private val soundPool = SoundPool.Builder().build()
+
     private var currentCountDownTimer: CountDownTimer? = null
+
+    private var tickingSoundId: Int? = null
+
+    private var bellSoundId: Int? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
 
@@ -30,7 +37,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         bindViews()
-
+        initSounds()
     }
 
     private fun bindViews(){
@@ -57,10 +64,18 @@ class MainActivity : AppCompatActivity() {
                     seekBar ?: return
                     currentCountDownTimer = createCountDownTimer(seekBar.progress * 60 * 1000L)
                     currentCountDownTimer?.start()
-
+                    tickingSoundId?.let { soundId ->
+                        soundPool.play(soundId, 1F, 1F, 0, -1, 1F)
+                    }
                 }
             }
         )
+    }
+
+    private fun initSounds()
+    {
+        tickingSoundId = soundPool.load(this,R.raw.timer_ticking1,1)
+        bellSoundId = soundPool.load(this,R.raw.timer_bell1,1)
     }
 
     private fun createCountDownTimer(initialMillis: Long) =
