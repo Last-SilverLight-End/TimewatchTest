@@ -99,6 +99,12 @@ class MainActivity : AppCompatActivity() {
             override fun onFinish() {
                 updateRemainTime(0)
                 updateSeekBar(0)
+                soundPool.autoPause();
+                bellSoundId?.let { soundId ->
+                    soundPool.play(soundId,1F,1F,0,0,1F,)
+                }
+
+
             }
         }
 
