@@ -72,11 +72,8 @@ class MainActivity : AppCompatActivity() {
                 override fun onStopTrackingTouch(seekBar: SeekBar?) {
                     //TODO("Not yet implemented")
                     seekBar ?: return
-                    currentCountDownTimer = createCountDownTimer(seekBar.progress * 60 * 1000L)
-                    currentCountDownTimer?.start()
-                    tickingSoundId?.let { soundId ->
-                        soundPool.play(soundId, 1F, 1F, 0, -1, 1F)
-                    }
+
+                    startCountDown()
                 }
             }
         )
@@ -97,17 +94,27 @@ class MainActivity : AppCompatActivity() {
             }
 
             override fun onFinish() {
-                updateRemainTime(0)
-                updateSeekBar(0)
-                soundPool.autoPause();
-                bellSoundId?.let { soundId ->
-                    soundPool.play(soundId,1F,1F,0,0,1F,)
-                }
 
+                completeCountDown()
 
             }
         }
+    private fun completeCountDown(){
+        updateRemainTime(0)
+        updateSeekBar(0)
+        soundPool.autoPause();
+        bellSoundId?.let { soundId ->
+            soundPool.play(soundId,1F,1F,0,0,1F,)
+        }
+    }
 
+    private fun startCountDown(){
+        currentCountDownTimer = createCountDownTimer(seekBar.progress * 60 * 1000L)
+        currentCountDownTimer?.start()
+        tickingSoundId?.let { soundId ->
+            soundPool.play(soundId, 1F, 1F, 0, -1, 1F)
+        }
+    }
 
 
     @SuppressLint("SetTextI18n")
