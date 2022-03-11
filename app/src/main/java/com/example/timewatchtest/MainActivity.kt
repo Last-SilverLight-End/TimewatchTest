@@ -18,6 +18,9 @@ class MainActivity : AppCompatActivity() {
     private val remainSecondsTextView: TextView by lazy{
         findViewById(R.id.remainSecondsTextView)
     }
+    private val remainMilisecondsTextView: TextView by lazy{
+        findViewById(R.id.remainMilisecondsTextView)
+    }
 
     private val seekBar: SeekBar by lazy {
         findViewById(R.id.seekBar)
@@ -48,6 +51,11 @@ class MainActivity : AppCompatActivity() {
         super.onPause()
         soundPool.autoPause()
 
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        soundPool.release()
     }
 
     private fun bindViews(){
@@ -122,7 +130,7 @@ class MainActivity : AppCompatActivity() {
         val remainSeconds = remainMillis / 1000
 
         remainMinutesTextView.text = "%02d".format(remainSeconds / 60)
-        remainSecondsTextView.text = "%02d".format(remainSeconds % 60)
+        remainSecondsTextView.text = "%02d'".format(remainSeconds % 60)
     }
 
     private fun updateSeekBar(remainMillis: Long) {
