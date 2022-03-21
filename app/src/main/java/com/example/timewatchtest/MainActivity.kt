@@ -8,8 +8,11 @@ import android.os.Bundle
 import android.os.CountDownTimer
 import android.widget.SeekBar
 import android.widget.TextView
+import java.util.*
+import kotlin.concurrent.timerTask
 
 class MainActivity : AppCompatActivity() {
+
 
     private val remainMinutesTextView: TextView by lazy {
         findViewById(R.id.remainMinutesTextView)
@@ -25,7 +28,8 @@ class MainActivity : AppCompatActivity() {
     private val seekBar: SeekBar by lazy {
         findViewById(R.id.seekBar)
     }
-
+    private var timerTask : TimerTask? =null
+    private var timeTask = 0
     private val soundPool = SoundPool.Builder().build()
 
     private var currentCountDownTimer: CountDownTimer? = null
@@ -118,9 +122,13 @@ class MainActivity : AppCompatActivity() {
 
     private fun startCountDown(){
         currentCountDownTimer = createCountDownTimer(seekBar.progress * 60 * 1000L)
+
         currentCountDownTimer?.start()
         tickingSoundId?.let { soundId ->
             soundPool.play(soundId, 1F, 1F, 0, -1, 1F)
+        }
+        runOnUiThread {
+            remainMilisecondsTextView.text="$"
         }
     }
 
@@ -131,6 +139,10 @@ class MainActivity : AppCompatActivity() {
 
         remainMinutesTextView.text = "%02d".format(remainSeconds / 60)
         remainSecondsTextView.text = "%02d'".format(remainSeconds % 60)
+        remainMilisecondsTextView.text = "$remainSeconds"
+
+
+
     }
 
     private fun updateSeekBar(remainMillis: Long) {

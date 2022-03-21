@@ -1,12 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
 
     tools:context=".MainActivity">
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/img_tomato_stem"
+        app:layout_constraintBottom_toTopOf="@id/remainMinutesTextView"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
 
     <TextView
@@ -18,72 +26,72 @@
         android:textSize="80dp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintHorizontal_chainStyle="packed"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toLeftOf="@id/dot"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintHorizontal_chainStyle="packed"
         tools:ignore="HardCodedText" />
 
     <TextView
-            android:id="@+id/dot"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text=":"
-            android:textColor="@color/white"
-            android:textSize="80sp"
-            android:textStyle="bold"
-        app:layout_constraintTop_toTopOf="parent"
+        android:id="@+id/dot"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text=":"
+        android:textColor="@color/white"
+        android:textSize="80sp"
+        android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintHorizontal_chainStyle="packed"
-            app:layout_constraintLeft_toRightOf="@id/remainMinutesTextView"
-            app:layout_constraintRight_toLeftOf="@id/remainSecondsTextView"
+        app:layout_constraintLeft_toRightOf="@id/remainMinutesTextView"
+        app:layout_constraintRight_toLeftOf="@id/remainSecondsTextView"
+        app:layout_constraintTop_toTopOf="parent"
 
-            tools:ignore="HardCodedText" />
+        tools:ignore="HardCodedText" />
 
-        <TextView
-            android:id="@+id/remainSecondsTextView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="00'"
-            android:textColor="@color/white"
-            android:textSize="80sp"
-            android:textStyle="bold"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintHorizontal_chainStyle="packed"
-            app:layout_constraintLeft_toRightOf="@id/dot"
-            app:layout_constraintRight_toLeftOf="@id/remainMilisecondsTextView"
-            tools:ignore="HardCodedText" />
+    <TextView
+        android:id="@+id/remainSecondsTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="00'"
+        android:textColor="@color/white"
+        android:textSize="80sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintHorizontal_chainStyle="packed"
+        app:layout_constraintLeft_toRightOf="@id/dot"
+        app:layout_constraintRight_toLeftOf="@id/remainMilisecondsTextView"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="HardCodedText" />
 
-        <TextView
-            android:id="@+id/remainMilisecondsTextView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="00"
-            android:textColor="@color/white"
-            android:textSize="80sp"
-            android:textStyle="bold"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintHorizontal_chainStyle="packed"
-            app:layout_constraintLeft_toRightOf="@id/remainSecondsTextView"
-            app:layout_constraintRight_toRightOf="parent"
-            tools:ignore="HardCodedText" />
+    <TextView
+        android:id="@+id/remainMilisecondsTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="00"
+        android:textColor="@color/white"
+        android:textSize="80sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintHorizontal_chainStyle="packed"
+        app:layout_constraintLeft_toRightOf="@id/remainSecondsTextView"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="HardCodedText" />
 
     <SeekBar
         android:id="@+id/seekBar"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_marginHorizontal="20dp"
         android:max="60"
         android:progress="50"
-        android:layout_marginHorizontal="20dp"
-        app:tickMark="@drawable/drawable_tick_mark"
         android:progressDrawable="@color/transparent"
         android:thumb="@drawable/ic_thumb"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/remainMinutesTextView"
+        app:tickMark="@drawable/drawable_tick_mark"
 
         />
 
